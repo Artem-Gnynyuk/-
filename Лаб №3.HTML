@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lab3</title>
+    <style>
+        body {
+            background-color: rgba(199, 121, 177, 0.241);
+        }
+        .table-container {
+            margin: 0 auto;
+            width: 60%; 
+        }
+        .side-images {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .side-images img {
+            max-width: 30%; 
+            height: auto;
+        }
+        table, input, select {
+            background-color: rgba(236, 207, 227, 0.241); 
+        }
+    </style>
+</head>
+<body>
+
+    <p style="color: rgb(25, 163, 140); font-size: 30px; text-align: center;"><em>ALOHA Pizza!</em></p>
+
+    <hr style="border-top: 2px solid rgb(204, 140, 229); margin-top: 20px;">
+
+    <div class="side-images">
+        <img src="Left pizza photo.jpg" alt="Left pizza photo">
+        <div class="table-container">
+            <form>
+                <table border="3" width="100%">
+                     <tr>
+                        <td colspan="2">Name</td>
+                        <td colspan="4"> <input type="name" name="login" 
+                          placeholder="Enter your name"  required></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">Pizza Toping</td>
+                        <td colspan="4"> 
+                            <input name="Topping" type="radio" value="supreme" required> Supreme <br/>
+                            <input name="Topping" type="radio" value="vegetarian" required> Vegetarian <br/>
+                            <input name="Topping" type="radio" value="hawaiian" required> Hawaiian <br/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">Pizza sauce</td>
+                        <td colspan="4">
+                            <select> 
+                                <option>Tomato</option>
+                                <option>Mayonnaise</option>
+                                <option>Garlicky</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">Optional Extras</td>
+                        <td colspan="4"> 
+                            <input type="checkbox" value="extra cheese" /> Extra Cheese
+                            <input type="checkbox" value="gluten Free Base" /> Gluten Free Base 
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="6">Delivery Instructions: <br>
+                            <input type="text" placeholder="Your wishes" style="width: 380px; height: 50px;" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="6">
+                            <input type="submit" value="Send my Order" style="width: 110px; height: 100%">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <img src="Right pizza photo.jpg" alt="Right pizza photo">
+    </div>
+
+    <hr style="border-top: 2px solid rgb(204, 140, 229); margin-top: 20px;">
+
+    <div style="display: flex; justify-content: space-between;">
+        <p><a style="color: rgb(204, 140, 229);" href="https://www.instagram.com/klomchik_?igsh=NTc4MTIwNjQ2YQ==" target="_blank"><em>Our Instagram</em></a></p>
+        <p style="color: rgb(204, 140, 229);"><em>Our phone number: +144664850155</em></p>
+    </div>
+
+</body>
+</html>
