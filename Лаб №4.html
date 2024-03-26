@@ -1,0 +1,238 @@
+
+Вот ваш обновленный HTML-код с вставленными изменениями:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+    <style> 
+        * {
+          box-sizing: border-box;
+          font-weight: bold;
+        }
+        
+        body {
+          margin: 0;
+          padding: 0;
+          font-size: 13px;
+          font-family: 'Roboto', sans-serif;
+          background-color: #090909;
+        }
+        
+        #circle1 {
+          width: 15px;
+          height: 15px;
+          background-color: #fc554c;
+          border-radius: 10px;
+          left: 3%;
+          top: 2%;
+          position: absolute;
+        
+        }
+        
+        #circle2 {
+          width: 15px;
+          height: 15px;
+          background-color: #fab727;
+          border-radius: 10px;
+           left: 5%;
+           top: 2%;
+          margin-left: 20px;
+          position: absolute;
+        
+        }
+        
+        #circle3 {
+          width: 15px;
+          height: 15px;
+          background-color: #28c03f;
+          border-radius: 10px;
+          left: 14%;
+          top: 2%;
+          margin-left: 20px;
+          position: absolute;
+        }
+        
+        #calculator {
+          position: absolute;
+          top: 40%;
+          left: 40%;
+          transform: translate(-40%, -40%);
+          width: 240px;
+          color: #ffffff;
+        }
+        
+        #cal-display {
+          background-color: #555558;
+          line-height: 1.2em;
+          font-size: 2.5em;
+          text-align: right;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+          -webkit-box-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          padding-right: 15px;
+          padding-top: 20px;
+          padding-bottom: 10px;
+          
+        }
+        
+        #cal-keypad,
+        .functional-keys,
+        .number-keys {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+        }
+        
+        .functional-keys{
+          background-color: #616066;
+        
+        }
+        
+        #cal-keypad {
+          height: 250px;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          border-bottom: 1px solid #1b1a1a;
+          overflow: hidden;
+        }
+        
+        #cal-keypad button {
+          padding: 0;
+          font-size: 1.5em;
+          width: 60px;
+          height: 50px;
+          line-height: 50px;
+          color: #ffffff;
+          background: none;
+          border: none;
+          font-family: inherit;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          outline: none;
+          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        
+        #cal-keypad .input-keys {
+          width: 240px;
+          background-color: #717171;
+        }
+        
+        #cal-keypad .input-keys button {
+          border-top: 1px solid #000; 
+          border-left: 1px solid #000; 
+        }
+        
+        #cal-keypad .input-keys button:active {
+          background-color: #838383;
+        }
+        
+        #cal-keypad .number-keys {
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+          flex-direction: row;
+          -ms-flex-wrap: wrap-reverse;
+          flex-wrap: wrap-reverse;
+        }
+        
+        #cal-keypad .number-keys .key-0 {
+          width: 120px;
+          border-bottom-left-radius: 10px;
+        }
+        
+        #cal-keypad .number-keys .key-coma {
+          padding-bottom: 5px;
+        }
+        
+        #cal-keypad .operator {
+          background-color: #fe9807;
+        }
+        
+        #cal-keypad .operator button {
+          border: 1px solid #000; /* изменить цвет границы на черный */
+        }
+        
+        #cal-keypad .operator button:not(:last-child) {
+          border-bottom: 1px solid #000; /* изменить цвет нижней границы на черный */
+        }
+        
+        #cal-keypad .operator button span {
+          display: block;
+          height: 50px;
+          line-height: 48px;
+        }
+        
+        #cal-keypad .operator button.active > span {
+          border: 1px solid #000000;
+          border-bottom: 2px solid #000000;
+        }
+        
+        #cal-keypad .operator .key-equal {
+          border-bottom-right-radius: 8px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+	<div id="calculator">
+    <div id="cal-display">
+
+  	 <div id="circle1"></div>
+  	 <div id="circle2"></div>
+  	 <div id="circle3"></div>
+       0
+    </div>
+
+  <div id="cal-keypad">
+
+    <div class="input-keys">
+
+      <div class="functional-keys">
+
+        <button class="clear">AC</button>
+        <button class="sign" >+/-</button>
+        <button class="percent">%</button>
+      </div>
+
+      <div class="number-keys">
+
+        <button class="key-0"> 0 </button>
+        <button class="key-coma"> , </button>
+
+        <button> 1 </button>
+        <button> 2 </button>
+        <button> 3 </button>
+        <button> 4 </button>
+        <button> 5 </button>
+        <button> 6 </button>
+        <button> 7 </button>
+        <button> 8 </button>
+        <button> 9 </button>
+      </div>
+    </div>
+
+      <div class="operator">
+
+      <button ><span> ÷ </span></button>
+      <button ><span> × </span></button>
+      <button ><span> − </span></button>
+      <button ><span> + </span></button>
+      <button ><span> = </span></button>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
