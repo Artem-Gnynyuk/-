@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculator</title>
+    <style> 
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 15px;
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffffff;
+      
+        }
+        
+        .calculator {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            transform: translate(-40%, -40%);
+            width: 240px;
+            color: #ffffff;
+            display: grid;            
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .display {
+            background-color: #555558;
+            line-height: 1.2em;
+            font-size: 2.5em;
+            text-align: right;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding-right: 15px;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .keypad {
+            background-color: #717171;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            grid-gap: 1px;
+        }
+        
+        button {
+            padding: 10px; 
+            font-size: 1.67em; 
+            color: #ffffff;
+            background: none;
+            border: none;
+            font-family: inherit;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            outline: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            margin: 0; 
+        }
+        
+        .key {
+            background-color: #616066;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .key.equal,
+        .key.multiply,
+        .key.minus,
+        .key.plus {
+            background-color: #fe9807; 
+        }                       
+        #circle1, #circle2, #circle3 {
+          width: 15px;
+          height: 15px;
+          border-radius: 10px;
+          position: absolute;
+          top: 10%;
+        }
+        
+        #circle1 {
+          background-color: #fc554c;
+          left: 3%;
+        }
+        
+        #circle2 {
+          background-color: #fab727;
+          left: 4%;
+          margin-left: 20px;
+        }
+        
+        #circle3 {
+          background-color: #28c03f;
+          left: 13%;
+          margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <div class="display">
+        <div id="circle1"></div>
+        <div id="circle2"></div>
+        <div id="circle3"></div>
+        0
+    </div>
+    <div class="keypad">
+      
+        <!-- 1  row -->
+        <button class="key">AC</button>
+        <button class="key">+/-</button>
+        <button class="key">%</button>
+        <button class="key equal">÷</button>
+        <!-- 2 row -->
+        <button class="key">7</button>
+        <button class="key">8</button>
+        <button class="key">9</button>
+        <button class="key multiply">×</button> 
+        <button class="key">4</button>
+        <button class="key">5</button>
+        <button class="key">6</button>
+        <button class="key minus">−</button> 
+        <!-- 4 row -->
+        <button class="key">1</button>
+        <button class="key">2</button>
+        <button class="key">3</button>
+        <button class="key plus">+</button> 
+        <!-- 5 row -->
+        <button class="key" style="grid-column: span 2;">0</button>
+        <button class="key">,</button>
+        <button class="key equal">=</button>
+    </div>
+</div>
+
+</body>
+</html>
