@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    <h2>Основи JavaScript програмування. </h2>
+    <p>Введіть число:</p>
+    <input type="text" id="userInput">
+    <button onclick="processInput()">Обчислити</button>
+    <div id="result"></div>
+</body>
+<head>
+    <title>JavaScript Functions</title>
+    <script>
+        // Функція для перевірки, чи є вхідне значення числом
+        function isNumber(num) {
+            return !isNaN(num) && isFinite(num);
+        }
+
+        // Функція для перевірки, чи є число простим
+function isPrime(num) {
+    if (num <= 1 || !Number.isInteger(num)) {
+        return false;
+    }
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+// Функція для знаходження суми перших п'яти простих чисел
+function sumOfFirstFivePrimes() {
+    let sum = 0;
+    let count = 0;
+    let num = 2;
+    while (count < 5) {
+        if (isPrime(num)) {
+            sum += num;
+            count++;
+        }
+        num++;
+    }
+    return sum;
+}
+
+
+
+        // Функція для знаходження суми простих чисел від 0 до n
+function sumOfPrimesUpToN(n) {
+    let sum = 0;
+    for (let i = 2; i <= n; i++) {
+        if (isPrime(i)) {
+            sum += i;
+        }
+    }
+    return sum;
+}
+
+
+        // Функція для знаходження суми ряду 1 + 11 + 111 + ...
+        function sumOfSeries(n) {
+            let sum = 0;
+            let term = 0;
+            for (let i = 0; i < n; i++) {
+                term = term * 10 + 1;
+                sum += term;
+            }
+            return sum;
+        }
+
+        // функція, яка обробляє введене користувачем число
+        function processInput() {
+            let userInput = document.getElementById("userInput").value;
+            let resultContainer = document.getElementById("result");
+
+            if (isNumber(userInput)) {
+                let number = parseFloat(userInput);
+                let result = "";
+
+                if (number % 2 === 0) {
+                    result += "Введене число є парним.\n";
+                } else {
+                    result += "Введене число є непарним.\n";
+                }
+                result += "Сума перших п'яти простих чисел: " + sumOfFirstFivePrimes() + "\n";
+
+                result += "Сума простих чисел від 0 до " + number + ": " + sumOfPrimesUpToN(number) + "\n";
+                result += "Сума ряду з " + number + " чисел: " + sumOfSeries(number);
+               
+
+                resultContainer.innerText = result;
+            } else {
+                resultContainer.innerText = "Введіть дійсне число.";
+            }
+        }
+    </script>
+</head>
+
+</html>
