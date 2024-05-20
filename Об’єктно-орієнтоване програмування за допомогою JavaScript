@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary</title>
+    <style>
+        body 
+        h1 {
+            color: #037d4e;
+        }
+       
+    </style>
+</head>
+<body>
+    <h1> Salary Report</h1>
+    <div id="salary-report"></div>
+    <script>
+        // Employee 
+        class Employee {
+            constructor(firstName, lastName, baseSalary, experience) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.baseSalary = baseSalary;
+                this.experience = experience;
+            }
+
+            get countedSalary() {
+                let salary = this.baseSalary;
+                if (this.experience > 5) {
+                    salary = this.baseSalary * 1.2 + 500;
+                } else if (this.experience > 2) {
+                    salary = this.baseSalary + 200;
+                }
+                return salary;
+            }
+
+            get fullName() {
+                return `${this.firstName} ${this.lastName}`;
+            }
+        }
+
+        // Developer 
+        class Developer extends Employee {
+            constructor(firstName, lastName, baseSalary, experience) {
+                super(firstName, lastName, baseSalary, experience);
+            }
+        }
+
+        // Designer 
+        class Designer extends Employee {
+            constructor(firstName, lastName, baseSalary, experience, effCoeff) {
+                super(firstName, lastName, baseSalary, experience);
+                this.effCoeff = effCoeff;
+            }
+
+            get countedSalary() {
+                return super.countedSalary * this.effCoeff;
+            }
+        }
+
+        // Manage
+        class Manager extends Employee {
+            constructor(firstName, lastName, baseSalary, experience, team = []) {
+                super(firstName, lastName, baseSalary, experience);
+                this.team = team;
+            }
+
+            get countedSalary() {
+                let salary = super.countedSalary;
+                if (this.team.length > 10) {
+                    salary += 300;
+                } else if (this.team.length > 5) {
+                    salary += 200;
+                }
+                const devCount = this.team.filter(member => member instanceof Developer).length;
+                if (devCount > this.team.length / 2) {
+                    salary *= 1.1;
+                }
+                return salary;
+            }
+        }
+
+        // Department 
+        class Department {
+            constructor(managers = []) {
+                this.managers = managers;
+            }
+
+            giveSalary() {
+                const reportDiv = document.getElementById('salary-report');
+                reportDiv.innerHTML = '';
+
+                this.managers.forEach(manager => {
+                    reportDiv.innerHTML += `<p>${manager.fullName} отримав ${manager.countedSalary.toFixed(2)} гривень</p>`;
+                    manager.team.forEach(member => {
+                        reportDiv.innerHTML += `<p>${member.fullName} отримав ${member.countedSalary.toFixed(2)} гривень</p>`;
+                    });
+                });
+            }
+        }
+
+        
+        const employees = [
+            new Developer('Oleg', 'Kulinich', 20000, 4),
+            new Developer('Larisa', 'Makeeva', 20000, 10),
+            new Designer('Pasha', 'Luzan', 20000, 6, 0.8),
+            new Designer('Sasha', 'Chop', 20000, 8, 0.8),
+            new Manager('Masha', 'Uklon', 20000, 5, []),
+            new Manager('Max', 'Alekseev', 20000, 21, []),
+            new Developer('Vlad', 'Kucher', 20000, 1),
+        ];
+
+        //команди з менеджерами
+        employees[4].team = [employees[0], employees[1], employees[2]];
+        employees[5].team = [employees[3], employees[6]];
+
+        // department
+        const department = new Department([employees[4], employees[5]]);
+
+        // salary report
+        department.giveSalary();
+    </script>
+</body>
+</html>
