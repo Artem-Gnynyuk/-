@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Асинхронні запити за допомогою JavaScript </title>
+    <style>
+        a {
+            padding: 15px;
+            background-color: #6b00eb;
+            text-decoration: none;
+            color: white;
+            border-radius: 20px;
+            font-size: large;
+        }
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        hr {
+            border-color: gray;
+        }
+        p {
+            font-size: large;
+        }
+        .grid {
+            width: 100%;
+            display: flex;
+            grid-template-areas: 'img div';
+            margin: 30px 0px;
+            background-color: #202124;
+            border-radius: 25px;
+        }
+        .grid img {
+            width: 20%;
+            border-radius: 10%;
+        }
+        .modal {
+            display: none;
+            background: #121212;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 99999;
+        }
+        .modal_vis {
+            display: block;
+        }
+        .body_block {
+            overflow: hidden;
+            margin-right: 17px;
+        }
+        #close_modal {
+            color: #BFE2FF;
+            font-size: 40px;
+            font-weight: bold;
+            font-family: Times, sans-serif;
+            border-radius: 50%;
+            border: 4px solid #BFE2FF;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin: 20px;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            box-sizing: content-box;
+        }
+        #close_modal:hover {
+            transform: rotate(135deg);
+        }
+        .modal_txt {
+            background: #202124;
+            border-radius: 20px;
+            margin: 50px auto;
+            width: 450px;
+        }
+        .modal_txt img {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .pad {
+            padding: 0 15px;
+        }
+        .grey {
+            color: gray;
+        }
+        .textAling {
+            padding: 10% 20%;
+        }
+        .but {
+            padding: 20px 0;
+            text-align: right;
+        }
+        .phone {
+            width: 15px !important;
+        }
+    </style>
+</head>
+
+
+<body>
+    <main id="main">
+        <div id="modal" class="modal">
+            <div id="close_modal">+</div>
+            <div class="modal_txt">
+                <img id="link" src="#" alt="dog">
+                <div class="pad">
+                    <h2><span id="name">1<span></h2>
+                    <hr>
+                    <p><span class="grey">Sex </span><br> <span id="sex">2</span></p>
+                    <hr>
+                    <p><span class="grey">Age</span> <br> <span id="age">3</span></p>
+                    <hr>
+                    <p><span class="grey">Personality</span> <br> <span id="description">4<span></p>
+                    <div class="but">
+                        <a href="tel:+"><img class="phone" src="https://github.com/Artem-Gnynyuk/-/blob/main/photos/724664.png?raw=true" alt="phone"> Adopt Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        const URL = 'https://usersdogs.dmytrominochkin.cloud/dogs';
+        const Src = 'https://usersdogs.dmytrominochkin.cloud';
+        const xhr = new XMLHttpRequest();
+        let close_modal = document.getElementById('close_modal');
+        let body = document.getElementsByTagName('body')[0];
+        let a = 0;
+
+        fetch(URL)
+        .then(result => result.json())
+        .then(dogs => {
+            dogs.forEach(element => {
+                main.insertAdjacentHTML("beforebegin", 
+                `<div class="grid open_modal" onclick="display(this)"  value="${a}">
+                <img src="${Src}${element.dogImage}" alt="dog">
+                <div class="textAling">
+                <h2>${element.title}</h2>
+                <p>${element.sex}</p>
+                </div>
+                </div>`);
+                a++;
+            });    
+        })
+        .catch(err => console.error(err));
+
+        function display(elm) {
+            a = elm.getAttribute('value');
+            fetch(URL)
+            .then(result => result.json())
+            .then(dogs => {
+                document.getElementById("link").src = Src + dogs[a].dogImage;
+                document.getElementById("name").innerHTML = dogs[a].title;
+                document.getElementById("sex").innerHTML = dogs[a].sex;
+                document.getElementById("age").innerHTML = dogs[a].age;
+                document.getElementById("description").innerHTML = dogs[a].description;
+
+                modal.classList.add('modal_vis'); 
+                body.classList.add('body_block'); 
+            })
+            .catch(err => console.error(err));
+        }
+
+        close_modal.onclick = function() {  
+            modal.classList.remove('modal_vis');
+            body.classList.remove('body_block'); 
+        };
+    </script>
+</body>
+</html>
